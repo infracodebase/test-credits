@@ -1,0 +1,12 @@
+# Example Terraform variables file
+# Copy this file to terraform.tfvars and customize the values
+
+resource_group_name = "rg-example-dev-001"
+location           = "East US"
+
+tags = {
+  Environment = "dev"
+  Project     = "example"
+  Owner       = "team-platform"
+  ManagedBy   = "terraform"
+}

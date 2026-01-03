@@ -10,3 +10,66 @@ tags = {
   Owner       = "team-platform"
   ManagedBy   = "terraform"
 }
+
+# Azure Key Vault Configuration
+key_vault_name                            = "kv-example-dev-001"
+key_vault_sku_name                        = "standard"
+key_vault_enabled_for_disk_encryption     = false
+key_vault_enabled_for_deployment          = false
+key_vault_enabled_for_template_deployment = false
+key_vault_purge_protection_enabled        = true
+key_vault_soft_delete_retention_days      = 90
+key_vault_public_network_access_enabled   = false
+
+# Network ACLs (customize as needed)
+key_vault_network_acls_bypass         = "AzureServices"
+key_vault_network_acls_default_action = "Deny"
+key_vault_network_acls_ip_rules       = []
+key_vault_network_acls_subnet_ids     = []
+
+# Private Endpoint Configuration
+enable_key_vault_private_endpoint               = true
+vnet_name                                      = "vnet-example-dev-001"
+vnet_address_space                             = ["10.0.0.0/16"]
+private_endpoint_subnet_name                   = "subnet-private-endpoints"
+private_endpoint_subnet_address_prefixes       = ["10.0.1.0/24"]
+key_vault_private_endpoint_name                = "pe-keyvault-example-dev"
+private_endpoint_nsg_name                      = "nsg-private-endpoints-example-dev"
+
+# Function App Configuration
+function_app_name                            = "func-example-dev-001"
+function_app_service_plan_name               = "asp-example-dev-001"
+function_app_os_type                         = "Linux"
+function_app_sku_name                        = "Y1"
+function_app_runtime                         = "dotnet"
+function_app_dotnet_version                  = "6.0"
+function_app_public_network_access_enabled   = true
+function_app_cors_allowed_origins            = ["*"]
+function_app_cors_support_credentials        = false
+
+# Function App Storage Account
+function_app_storage_account_name            = "stfuncexampledev001"
+function_app_storage_account_tier            = "Standard"
+function_app_storage_account_replication_type = "LRS"
+function_app_storage_public_access_enabled   = false
+function_app_storage_default_action         = "Allow"
+function_app_storage_ip_rules               = []
+function_app_storage_subnet_ids             = []
+
+# Application Insights
+enable_application_insights                  = true
+application_insights_name                   = "appi-example-dev-001"
+grant_function_app_key_vault_access         = true
+
+# Custom Function App Settings (optional)
+function_app_settings = {
+  "ENVIRONMENT" = "dev"
+  "LOG_LEVEL"   = "Information"
+}
+
+# Storage Private Endpoint Configuration
+enable_storage_private_endpoint         = true
+storage_blob_private_endpoint_name      = "pe-storage-blob-example-dev"
+storage_queue_private_endpoint_name     = "pe-storage-queue-example-dev"
+storage_table_private_endpoint_name     = "pe-storage-table-example-dev"
+storage_file_private_endpoint_name      = "pe-storage-file-example-dev"

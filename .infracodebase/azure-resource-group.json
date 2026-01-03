@@ -1,0 +1,231 @@
+{
+  "nodes": [
+    {
+      "id": "rg-main",
+      "label": "Resource Group",
+      "subtitle": "rg-example-dev-001",
+      "icon": "/icons/azure/management/resource-group.png",
+      "type": "container"
+    },
+    {
+      "id": "kv-main",
+      "label": "Key Vault",
+      "subtitle": "kv-example-dev-001",
+      "icon": "/icons/azure/security/key-vault.png",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "vnet-main",
+      "label": "Virtual Network",
+      "subtitle": "vnet-example-dev-001",
+      "icon": "/icons/azure/networking/virtual-network.png",
+      "type": "container",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "subnet-pe",
+      "label": "Subnet",
+      "subtitle": "subnet-private-endpoints",
+      "icon": "/icons/azure/networking/subnet.png",
+      "type": "container",
+      "parentNode": "vnet-main",
+      "decorators": [
+        {
+          "icon": "/icons/azure/networking/network-security-group.png",
+          "position": "bottom-right",
+          "tooltip": "NSG: nsg-private-endpoints-example-dev"
+        }
+      ]
+    },
+    {
+      "id": "pe-kv",
+      "label": "Private Endpoint",
+      "subtitle": "pe-keyvault-example-dev",
+      "icon": "/icons/azure/networking/private-endpoint.png",
+      "parentNode": "subnet-pe"
+    },
+    {
+      "id": "dns-zone",
+      "label": "Private DNS Zone",
+      "subtitle": "privatelink.vaultcore.azure.net",
+      "icon": "/icons/azure/networking/dns-zone-(public).png",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "func-app",
+      "label": "Function App",
+      "subtitle": "func-example-dev-001",
+      "icon": "/icons/azure/application/function-app.png",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "asp",
+      "label": "App Service Plan",
+      "subtitle": "asp-example-dev-001",
+      "icon": "/icons/azure/application/app-service-plan.png",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "storage",
+      "label": "Storage Account",
+      "subtitle": "stfuncexampledev001",
+      "icon": "/icons/azure/storage/storage-account.png",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "app-insights",
+      "label": "Application Insights",
+      "subtitle": "appi-example-dev-001",
+      "icon": "/icons/azure/management/application-insights.png",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "pe-storage-blob",
+      "label": "Private Endpoint",
+      "subtitle": "pe-storage-blob-example-dev",
+      "icon": "/icons/azure/networking/private-endpoint.png",
+      "parentNode": "subnet-pe"
+    },
+    {
+      "id": "pe-storage-queue",
+      "label": "Private Endpoint",
+      "subtitle": "pe-storage-queue-example-dev",
+      "icon": "/icons/azure/networking/private-endpoint.png",
+      "parentNode": "subnet-pe"
+    },
+    {
+      "id": "pe-storage-table",
+      "label": "Private Endpoint",
+      "subtitle": "pe-storage-table-example-dev",
+      "icon": "/icons/azure/networking/private-endpoint.png",
+      "parentNode": "subnet-pe"
+    },
+    {
+      "id": "pe-storage-file",
+      "label": "Private Endpoint",
+      "subtitle": "pe-storage-file-example-dev",
+      "icon": "/icons/azure/networking/private-endpoint.png",
+      "parentNode": "subnet-pe"
+    },
+    {
+      "id": "dns-zone-blob",
+      "label": "Private DNS Zone",
+      "subtitle": "privatelink.blob.core.windows.net",
+      "icon": "/icons/azure/networking/dns-zone-(public).png",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "dns-zone-queue",
+      "label": "Private DNS Zone",
+      "subtitle": "privatelink.queue.core.windows.net",
+      "icon": "/icons/azure/networking/dns-zone-(public).png",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "dns-zone-table",
+      "label": "Private DNS Zone",
+      "subtitle": "privatelink.table.core.windows.net",
+      "icon": "/icons/azure/networking/dns-zone-(public).png",
+      "parentNode": "rg-main"
+    },
+    {
+      "id": "dns-zone-file",
+      "label": "Private DNS Zone",
+      "subtitle": "privatelink.file.core.windows.net",
+      "icon": "/icons/azure/networking/dns-zone-(public).png",
+      "parentNode": "rg-main"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "pe-kv",
+      "target": "kv-main",
+      "label": "connects to"
+    },
+    {
+      "id": "e2",
+      "source": "dns-zone",
+      "target": "vnet-main",
+      "label": "linked to"
+    },
+    {
+      "id": "e4",
+      "source": "pe-kv",
+      "target": "dns-zone",
+      "label": "registers with"
+    },
+    {
+      "id": "e5",
+      "source": "func-app",
+      "target": "asp",
+      "label": "uses"
+    },
+    {
+      "id": "e6",
+      "source": "func-app",
+      "target": "storage",
+      "label": "stores data"
+    },
+    {
+      "id": "e7",
+      "source": "func-app",
+      "target": "app-insights",
+      "label": "monitored by"
+    },
+    {
+      "id": "e8",
+      "source": "func-app",
+      "target": "kv-main",
+      "label": "accesses secrets"
+    },
+    {
+      "id": "e9",
+      "source": "pe-storage-blob",
+      "target": "storage",
+      "label": "blob access"
+    },
+    {
+      "id": "e10",
+      "source": "pe-storage-queue",
+      "target": "storage",
+      "label": "queue access"
+    },
+    {
+      "id": "e11",
+      "source": "pe-storage-table",
+      "target": "storage",
+      "label": "table access"
+    },
+    {
+      "id": "e12",
+      "source": "pe-storage-file",
+      "target": "storage",
+      "label": "file access"
+    },
+    {
+      "id": "e13",
+      "source": "dns-zone-blob",
+      "target": "vnet-main",
+      "label": "linked to"
+    },
+    {
+      "id": "e14",
+      "source": "dns-zone-queue",
+      "target": "vnet-main",
+      "label": "linked to"
+    },
+    {
+      "id": "e15",
+      "source": "dns-zone-table",
+      "target": "vnet-main",
+      "label": "linked to"
+    },
+    {
+      "id": "e16",
+      "source": "dns-zone-file",
+      "target": "vnet-main",
+      "label": "linked to"
+    }
+  ]
+}

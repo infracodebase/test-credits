@@ -1,10 +1,14 @@
 # Configure the Azure Provider
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.6"
 
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
+      version = "~> 4.0"
+    }
+    random = {
+      source  = "hashicorp/random"
       version = "~> 3.0"
     }
   }
@@ -45,22 +49,6 @@ provider "azurerm" {
     # Application Insights features
     application_insights {
       disable_generated_rule = false
-    }
-
-    # Cognitive Account features
-    cognitive_account {
-      purge_soft_delete_on_destroy = true
-    }
-
-    # Template Deployment features
-    template_deployment {
-      delete_nested_items_during_deletion = true
-    }
-
-    # API Management features
-    api_management {
-      purge_soft_delete_on_destroy = true
-      recover_soft_deleted         = true
     }
   }
 

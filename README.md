@@ -1,3 +1,1 @@
 # test-credits
-
-Something.

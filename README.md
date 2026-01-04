@@ -1,4 +1,4 @@
-# Azure Infrastructure with Terraform
+# Azure Infrastructure with Terraform. v2
 
 A comprehensive Terraform configuration for deploying Azure infrastructure including Resource Group, Key Vault, Function App, Virtual Network, and Private Endpoints for secure connectivity.
 
